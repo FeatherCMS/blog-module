@@ -9,7 +9,7 @@ import FeatherCore
 
 extension BlogAuthorLinkModel: LeafDataRepresentable {
     
-    var leafData: LeafData {
+    public var leafData: LeafData {
         .dictionary([
             "id": id,
             "name": name,

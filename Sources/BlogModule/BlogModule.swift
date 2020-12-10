@@ -8,25 +8,25 @@
 import Fluent
 import FeatherCore
 
-final class BlogModule: ViperModule {
+final public class BlogModule: ViperModule {
 
-    static let name = "blog"
-    var priority: Int { 1100 }
+    static public let name = "blog"
+    public var priority: Int { 1100 }
 
-    var router: ViperRouter? = BlogRouter()
+    public var router: ViperRouter? = BlogRouter()
     
 
-    var migrations: [Migration] {
+    public var migrations: [Migration] {
         [
             BlogMigration_v1_0_0(),
         ]
     }
   
-    static var bundleUrl: URL? {
+    static public var bundleUrl: URL? {
         Bundle.module.resourceURL?.appendingPathComponent("Bundle")
     }
 
-    func boot(_ app: Application) throws {
+    public func boot(_ app: Application) throws {
         /// frontend middleware
         app.databases.middleware.use(FrontendMetadataMiddleware<BlogPostModel>())
         app.databases.middleware.use(FrontendMetadataMiddleware<BlogCategoryModel>())

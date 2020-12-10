@@ -11,10 +11,10 @@ import FeatherCore
 extension BlogCategoryModel: FrontendMetadataChangeDelegate {
     
     /// the default slug is just a combination of the model name and the slugified title
-    var slug: String { Self.name + "/" + title.slugify() }
+    public var slug: String { Self.name + "/" + title.slugify() }
     
     /// when a category change happens we update the slug and title of the associated metadata
-    func willUpdate(_ metadata: FrontendMetadata) {
+    public func willUpdate(_ metadata: FrontendMetadata) {
         metadata.slug = slug
         metadata.title = title
     }

@@ -7,10 +7,10 @@
 
 import FeatherCore
 
-final class BlogCategoryModel: ViperModel {
-    typealias Module = BlogModule
+final public class BlogCategoryModel: ViperModel {
+    public typealias Module = BlogModule
 
-    static let name = "categories"
+    public static let name = "categories"
     
     struct FieldKeys {
         static var title: FieldKey { "title" }
@@ -20,22 +20,22 @@ final class BlogCategoryModel: ViperModel {
         static var priority: FieldKey { "priority" }
     }
 
-    @ID() var id: UUID?
-    @Field(key: FieldKeys.title) var title: String
-    @Field(key: FieldKeys.imageKey) var imageKey: String
-    @Field(key: FieldKeys.excerpt) var excerpt: String
-    @Field(key: FieldKeys.color) var color: String?
-    @Field(key: FieldKeys.priority) var priority: Int
-    @Children(for: \.$category) var posts: [BlogPostModel]
+    @ID() public var id: UUID?
+    @Field(key: FieldKeys.title) public var title: String
+    @Field(key: FieldKeys.imageKey) public var imageKey: String
+    @Field(key: FieldKeys.excerpt) public var excerpt: String
+    @Field(key: FieldKeys.color) public var color: String?
+    @Field(key: FieldKeys.priority) public var priority: Int
+    @Children(for: \.$category) public var posts: [BlogPostModel]
     
-    init() { }
+    public init() { }
     
-    init(id: UUID? = nil,
-         title: String,
-         imageKey: String,
-         excerpt: String,
-         color: String? = nil,
-         priority: Int = 100)
+    public init( id: UUID? = nil,
+                 title: String,
+                 imageKey: String,
+                 excerpt: String,
+                 color: String? = nil,
+                 priority: Int = 100)
     {
         self.id = id
         self.title = title

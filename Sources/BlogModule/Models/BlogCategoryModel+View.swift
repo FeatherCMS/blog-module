@@ -9,7 +9,7 @@ import FeatherCore
 
 extension BlogCategoryModel: LeafDataRepresentable {
 
-    var leafData: LeafData {
+    public var leafData: LeafData {
         .dictionary([
             "id": id,
             "title": title,
@@ -24,7 +24,7 @@ extension BlogCategoryModel: LeafDataRepresentable {
 
 extension BlogCategoryModel: FormFieldOptionRepresentable {
 
-    var formFieldOption: FormFieldOption {
+    public var formFieldOption: FormFieldOption {
         .init(key: id!.uuidString, label: title)
     }
 }

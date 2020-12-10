@@ -9,9 +9,9 @@ import FeatherCore
 
 extension BlogPostModel: FrontendMetadataChangeDelegate {
     
-    var slug: String { title.slugify() }
+    public var slug: String { title.slugify() }
     
-    func willUpdate(_ metadata: FrontendMetadata) {
+    public func willUpdate(_ metadata: FrontendMetadata) {
         metadata.slug = slug
         metadata.title = title
         metadata.excerpt = excerpt
