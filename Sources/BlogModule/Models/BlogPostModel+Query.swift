@@ -9,7 +9,7 @@ import FeatherCore
 
 extension BlogPostModel {
 
-    static func findWithCategoriesAndAuthorsBy(id: UUID, on db: Database) -> EventLoopFuture<BlogPostModel?> {
+    static public func findWithCategoriesAndAuthorsBy(id: UUID, on db: Database) -> EventLoopFuture<BlogPostModel?> {
         BlogPostModel.query(on: db)
             .filter(\.$id == id)
             .with(\.$categories)
@@ -18,7 +18,7 @@ extension BlogPostModel {
     }
     
     /// query posts for the home page
-    static func home(on req: Request) -> EventLoopFuture<[BlogPostModel]> {
+    static public func home(on req: Request) -> EventLoopFuture<[BlogPostModel]> {
         query(on: req.db)
             .join(FrontendMetadata.self, on: \BlogPostModel.$id == \FrontendMetadata.$reference, method: .inner)
             .filter(FrontendMetadata.self, \.$status == .published)
@@ -30,7 +30,7 @@ extension BlogPostModel {
     }
     
     /// public post list
-    static func find(on req: Request) -> QueryBuilder<BlogPostModel> {
+    static public func find(on req: Request) -> QueryBuilder<BlogPostModel> {
         findMetadata(on: req.db)
             .filter(FrontendMetadata.self, \.$status == .published)
             .filter(FrontendMetadata.self, \.$date <= Date())
@@ -39,7 +39,7 @@ extension BlogPostModel {
     }
 
     /// find a single post by metadata
-    static func findBy(id: UUID, on req: Request) -> EventLoopFuture<BlogPostModel> {
+    static public func findBy(id: UUID, on req: Request) -> EventLoopFuture<BlogPostModel> {
         findMetadata(on: req.db)
             .filter(\.$id == id)
             .with(\.$categories)
@@ -49,7 +49,7 @@ extension BlogPostModel {
     }
     
     /// query posts for the author page
-    static func findByAuthor(id: UUID, on req: Request) -> EventLoopFuture<[BlogPostModel]> {
+    static public func findByAuthor(id: UUID, on req: Request) -> EventLoopFuture<[BlogPostModel]> {
         findMetadata(on: req.db)
             .filter(FrontendMetadata.self, \.$status == .published)
             .filter(FrontendMetadata.self, \.$date <= Date())
@@ -60,7 +60,7 @@ extension BlogPostModel {
     }
 
     /// query posts for the category page
-    static func findByCategory(id: UUID, on req: Request) -> EventLoopFuture<[BlogPostModel]> {
+    static public func findByCategory(id: UUID, on req: Request) -> EventLoopFuture<[BlogPostModel]> {
         findMetadata(on: req.db)
             .filter(FrontendMetadata.self, \.$status == .published)
             .filter(FrontendMetadata.self, \.$date <= Date())

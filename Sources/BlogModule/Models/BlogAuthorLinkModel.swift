@@ -7,10 +7,10 @@
 
 import FeatherCore
 
-final class BlogAuthorLinkModel: ViperModel {
-    typealias Module = BlogModule
+final public class BlogAuthorLinkModel: ViperModel {
+    public typealias Module = BlogModule
 
-    static let name = "links"
+    static public let name = "links"
     
     struct FieldKeys {
         static var label: FieldKey { "label" }
@@ -21,15 +21,15 @@ final class BlogAuthorLinkModel: ViperModel {
     
     // MARK: - fields
 
-    @ID() var id: UUID?
-    @Field(key: FieldKeys.label) var label: String
-    @Field(key: FieldKeys.url) var url: String
-    @Field(key: FieldKeys.priority) var priority: Int
-    @Parent(key: FieldKeys.authorId) var author: BlogAuthorModel
+    @ID() public var id: UUID?
+    @Field(key: FieldKeys.label) public var label: String
+    @Field(key: FieldKeys.url) public var url: String
+    @Field(key: FieldKeys.priority) public var priority: Int
+    @Parent(key: FieldKeys.authorId) public var author: BlogAuthorModel
     
-    init() { }
+    public init() { }
     
-    init(id: UUID? = nil,
+    public init(id: UUID? = nil,
          label: String,
          url: String,
          priority: Int = 10,

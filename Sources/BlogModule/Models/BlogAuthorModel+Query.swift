@@ -9,7 +9,7 @@ import FeatherCore
 
 extension BlogAuthorModel {
 
-    static func findBy(id: UUID, on req: Request) -> EventLoopFuture<BlogAuthorModel> {
+    static public func findBy(id: UUID, on req: Request) -> EventLoopFuture<BlogAuthorModel> {
         query(on: req.db)
             .filter(\.$id == id)
             .with(\.$links)
@@ -17,7 +17,7 @@ extension BlogAuthorModel {
             .unwrap(or: Abort(.notFound))
     }
 
-    static func findPublished(on req: Request) -> EventLoopFuture<[BlogAuthorModel]> {
+    static public func findPublished(on req: Request) -> EventLoopFuture<[BlogAuthorModel]> {
         findMetadata(on: req.db)
             .filter(FrontendMetadata.self, \.$status == .published)
             .filter(FrontendMetadata.self, \.$date <= Date())

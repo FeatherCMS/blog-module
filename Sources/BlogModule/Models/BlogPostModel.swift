@@ -7,10 +7,10 @@
 
 import FeatherCore
 
-final class BlogPostModel: ViperModel {
-    typealias Module = BlogModule
+final public class BlogPostModel: ViperModel {
+    public typealias Module = BlogModule
     
-    static let name = "posts"
+    public static let name = "posts"
 
     struct FieldKeys {
         static var title: FieldKey { "title" }
@@ -21,18 +21,18 @@ final class BlogPostModel: ViperModel {
     
     // MARK: - fields
 
-    @ID() var id: UUID?
-    @Field(key: FieldKeys.title) var title: String
-    @Field(key: FieldKeys.imageKey) var imageKey: String
-    @Field(key: FieldKeys.excerpt) var excerpt: String
-    @Field(key: FieldKeys.content) var content: String
+    @ID() public var id: UUID?
+    @Field(key: FieldKeys.title) public var title: String
+    @Field(key: FieldKeys.imageKey) public var imageKey: String
+    @Field(key: FieldKeys.excerpt) public var excerpt: String
+    @Field(key: FieldKeys.content) public var content: String
     
-    @Siblings(through: BlogPostCategoryModel.self, from: \.$post, to: \.$category) var categories: [BlogCategoryModel]
-    @Siblings(through: BlogPostAuthorModel.self, from: \.$post, to: \.$author) var authors: [BlogAuthorModel]
+    @Siblings(through: BlogPostCategoryModel.self, from: \.$post, to: \.$category) public var categories: [BlogCategoryModel]
+    @Siblings(through: BlogPostAuthorModel.self, from: \.$post, to: \.$author) public var authors: [BlogAuthorModel]
 
-    init() { }
+    public init() { }
     
-    init(id: UUID? = nil,
+   public init(id: UUID? = nil,
          title: String,
          imageKey: String,
          excerpt: String,
