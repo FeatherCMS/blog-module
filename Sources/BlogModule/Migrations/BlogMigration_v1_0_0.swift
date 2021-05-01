@@ -43,6 +43,9 @@ struct BlogMigration_v1_0_0: Migration {
                 .field(BlogPostModel.FieldKeys.imageKey, .string)
                 .field(BlogPostModel.FieldKeys.excerpt, .string)
                 .field(BlogPostModel.FieldKeys.content, .string)
+                .field(BlogPostModel.FieldKeys.updated_at, .datetime)
+                .field(BlogPostModel.FieldKeys.created_at, .datetime)
+                .field(BlogPostModel.FieldKeys.deleted_at, .datetime)
                 .create(),
             
             db.schema(BlogPostCategoryModel.schema)
