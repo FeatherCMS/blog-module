@@ -16,7 +16,6 @@ public struct BlogPostGetObject: Codable {
     public var content: String?
     public var updated_at: Date?
     public var created_at: Date?
-    public var deleted_at: Date?
 
     public var categories: [BlogCategoryListObject]
     public var authors: [BlogAuthorListObject]
@@ -28,7 +27,6 @@ public struct BlogPostGetObject: Codable {
                 content: String?,
                 updated_at: Date?,
                 created_at: Date?,
-                deleted_at: Date?,
                 categories: [BlogCategoryListObject] = [],
                 authors: [BlogAuthorListObject] = []) {
         self.id = id
@@ -38,7 +36,6 @@ public struct BlogPostGetObject: Codable {
         self.content = content
         self.updated_at = updated_at
         self.created_at = created_at
-        self.deleted_at = deleted_at
         self.categories = categories
         self.authors = authors
     }

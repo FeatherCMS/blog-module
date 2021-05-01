@@ -34,16 +34,23 @@ struct BlogPostApi: FeatherApiRepresentable {
                                                                       title: catmodel.title,
                                                                       imageKey: catmodel.imageKey,
                                                                       color: catmodel.color,
-                                                                      priority: catmodel.priority))
+                                                                      priority: catmodel.priority,
+                                                                      updated_at: catmodel.updatedAt,
+                                                                      created_at: catmodel.createdAt,
+                                                                      deleted_at: catmodel.deletedAt)
+                 )
              }
              var apiAuthors = [BlogAuthorApi.ListObject]()
              for authmodel in model.categories {
                  apiAuthors.append(BlogAuthorApi.ListObject.init(id: authmodel.id!,
                                                                  name: authmodel.title,
-                                                                 imageKey: authmodel.imageKey)
+                                                                 imageKey: authmodel.imageKey,
+                                                                 updated_at: authmodel.updatedAt,
+                                                                 created_at: authmodel.createdAt,
+                                                                 deleted_at: authmodel.deletedAt)
                  )
              }
-        return GetObject.init(id: model.id!, title: model.title, imageKey: model.imageKey, excerpt: model.excerpt, content: model.content, updated_at: model.updatedAt, created_at: model.createdAt, deleted_at: model.deletedAt, categories: apiCategories, authors: apiAuthors)
+        return GetObject.init(id: model.id!, title: model.title, imageKey: model.imageKey, excerpt: model.excerpt, content: model.content, updated_at: model.updatedAt, created_at: model.createdAt, categories: apiCategories, authors: apiAuthors)
     }
     
     func mapCreate(_ req: Request, model: Model, input: CreateObject) -> EventLoopFuture<Void> {
