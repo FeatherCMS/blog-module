@@ -27,14 +27,14 @@ public struct BlogPostListObject: Codable {
                 ) {
         self.id = id
         self.deleted_at = deleted_at
+        self.updated_at = updated_at
+        self.created_at = created_at
         guard deleted_at == nil else {
             return
         }
         self.title = title
         self.imageKey = imageKey
         self.excerpt = excerpt
-        self.updated_at = updated_at
-        self.created_at = created_at
     }
 
 }
