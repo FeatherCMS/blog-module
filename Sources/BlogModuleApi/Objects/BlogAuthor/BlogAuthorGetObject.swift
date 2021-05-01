@@ -16,7 +16,7 @@ public struct BlogAuthorGetObject: Codable {
     public var updated_at: Date?
     public var created_at: Date?
     
-    public var links: [BlogAuthorLinkListObject]
+    public var links: [BlogAuthorLinkListObject]?
     
     public init(id: UUID,
                 name: String,
@@ -32,7 +32,7 @@ public struct BlogAuthorGetObject: Codable {
         self.bio = bio
         self.updated_at = updated_at
         self.created_at = created_at
-        self.links = links
+        self.links = links.count > 0 ? links : nil
     }
 
 }
