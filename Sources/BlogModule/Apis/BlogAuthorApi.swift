@@ -28,15 +28,7 @@ struct BlogAuthorApi: FeatherApiRepresentable {
     }
     
     func mapGet(model: Model) -> GetObject {
-        var apiLinks = [BlogAuthorLinkApi.ListObject]()
-             for linkmodel in model.links {
-                apiLinks.append(BlogAuthorLinkApi.ListObject.init(id: linkmodel.id!,
-                                                                  label: linkmodel.label,
-                                                                  url: linkmodel.url,
-                                                                  priority: linkmodel.priority)
-                 )
-             }
-        return GetObject.init(id: model.id!, name: model.name, imageKey: model.imageKey, bio: model.bio, updated_at: model.updatedAt, created_at: model.createdAt, links: apiLinks)
+        .init(id: model.id!, name: model.name, imageKey: model.imageKey, bio: model.bio, updated_at: model.updatedAt, created_at: model.createdAt, links: [])
     }
     
     func mapCreate(_ req: Request, model: Model, input: CreateObject) -> EventLoopFuture<Void> {
