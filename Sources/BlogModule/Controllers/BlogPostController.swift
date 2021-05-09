@@ -7,7 +7,7 @@
 
 import FeatherCore
 
-struct BlogPostController: FeatherController {
+struct BlogPostController: PublicFeatherController {
 
     typealias Module = BlogModule
     typealias Model = BlogPostModel
@@ -69,30 +69,21 @@ struct BlogPostController: FeatherController {
 /// Overide default Route Builder
 extension BlogPostController {
 
-    func listApiTimestamp(_ req: Request) throws -> EventLoopFuture<PaginationContainer<ListApi.ListObject> > {
-        let start: Date = req.query["start"] ?? Date(timeIntervalSince1970: 0)
-        let end: Date = req.query["end"] ?? Date()
-        return  listLoader.paginate(req, start: start, end: end, withDeleted: true).map { pc -> PaginationContainer<ListApi.ListObject> in
+    func listPublicApi(_ req: Request) throws -> EventLoopFuture<PaginationContainer<ListApi.ListObject> > {
+        let qb = listLoader
+            .qbFromMeta(req, withDeleted: true)
+            .filter(
+                \.$updatedAt >= req.query["start"]
+                    ?? Date(timeIntervalSince1970: 0))
+            .filter(
+                \.$updatedAt <= req.query["end"]
+                    ?? Date())
+
+        return listLoader.paginate(req, qb).map { pc -> PaginationContainer<ListApi.ListObject> in
                 let api = ListApi()
                 let items = pc.map { api.mapList(model: $0) }
                 return items
             }
-    }
-    
-    func setupListPublicApiRoute(on builder: RoutesBuilder) {
-        builder.get(use: listApiTimestamp)
-    }
-
-}
-
-/// Support for start / end db filtering
-extension ListLoader where T: BlogPostModel {
-   
-    internal func paginate(_ req: Request, start: Date, end: Date, withDeleted deleted: Bool = false) -> EventLoopFuture<PaginationContainer<T>> {
-        let qb = qbAll(req, withDeleted: deleted)
-            .filter(\.$updatedAt >= start)
-            .filter(\.$updatedAt <= end)
-        return paginate(req, qb)
     }
 
 }
