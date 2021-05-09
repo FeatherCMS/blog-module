@@ -31,7 +31,7 @@ struct BlogRouter: FeatherRouter {
         apiRoutes.registerPublicApi(postController)
         apiRoutes.registerPublicApi(categoryController)
         apiRoutes.registerPublicApi(authorController)
-        apiRoutes.registerPublicApi(authorLinkController)
+//        apiRoutes.registerPublicApi(authorLinkController)
     }
     
     func apiAdminRoutesHook(args: HookArguments) {
