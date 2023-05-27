@@ -7,7 +7,7 @@
 
 import Vapor
 import Fluent
-import Feather
+import FeatherCore
 import FeatherObjects
 import BlogObjects
 import WebModule

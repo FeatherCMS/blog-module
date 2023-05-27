@@ -6,7 +6,7 @@
 //
 
 import BlogObjects
-import Feather
+import FeatherCore
 
 struct BlogInstallStepContext {
 

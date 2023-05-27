@@ -7,7 +7,7 @@
 
 import Foundation
 import Fluent
-import Feather
+import FeatherCore
 
 final class BlogAuthorLinkModel: FeatherDatabaseModel {
     typealias Module = BlogModule
