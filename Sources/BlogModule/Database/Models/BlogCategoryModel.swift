@@ -7,7 +7,7 @@
 
 import Foundation
 import Fluent
-import Feather
+import FeatherCore
 import FeatherObjects
 import BlogObjects
 
