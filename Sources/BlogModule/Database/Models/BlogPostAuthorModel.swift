@@ -7,7 +7,7 @@
 
 import Foundation
 import Fluent
-import Feather
+import FeatherCore
 import FeatherObjects
 
 final class BlogPostAuthorModel: FeatherDatabaseModel {

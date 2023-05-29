@@ -6,7 +6,7 @@
 //
 
 import Vapor
-import Feather
+import FeatherCore
 import BlogObjects
 
 struct BlogRouter: FeatherRouter {
